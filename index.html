@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feliz Dia da Mulher, Bbatata <3</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #fdfaf6;
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Importante per l'animazione sullo sfondo */
+            position: relative;
+        }
+
+        /* --- Stili per l'Animazione delle Mimose --- */
+        #mimosa-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; /* Mette i fiori DIETRO il contenuto principale */
+            pointer-events: none; /* Impedisce che i fiori disturbino i clic sui bottoni */
+        }
+
+        .mimosa-flake {
+            position: absolute;
+            background-color: #ffd166; /* Giallo Mimosa */
+            border-radius: 50%;
+            opacity: 0.8;
+            animation: fall linear infinite;
+        }
+
+        @keyframes fall {
+            0% {
+                transform: translateY(-10px) rotate(0deg) translateX(0px);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) rotate(360deg) translateX(50px);
+                opacity: 0; /* Svaniscono verso il basso */
+            }
+        }
+        /* ------------------------------------------ */
+
+        .container {
+            max-width: 600px;
+            padding: 30px;
+            background: rgba(255, 255, 255, 0.9); /* Leggermente trasparente per vedere i fiori */
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            margin: 20px;
+            z-index: 10; /* Sopra i fiori */
+            position: relative;
+        }
+
+        .step {
+            display: none;
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        .step.active {
+            display: block;
+        }
+
+        h1, p {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            background-color: #ffd166;
+            color: #333;
+            border: none;
+            padding: 12px 24px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: transform 0.2s, background-color 0.2s;
+            margin: 10px;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .btn:hover {
+            background-color: #ffc436;
+            transform: scale(1.05);
+        }
+
+        .btn-yes {
+            transition: opacity 0.3s ease;
+        }
+
+        .mimosa-img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .signature {
+            font-weight: 600;
+            color: #e76f51;
+            font-size: 1.3rem;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="mimosa-container"></div>
+
+    <div class="container">
+        <div id="step-1" class="step active">
+            <p>Você sabe que dia é hoje?<br><small><em>(Por favor, responda que não ou não vai funcionar)</em></small></p>
+            <button class="btn btn-yes" id="btn-sim" onclick="hideYesButton()">Sim</button>
+            <button class="btn" onclick="nextStep(1, 2)">Não</button>
+        </div>
+
+        <div id="step-2" class="step">
+            <p>Hoje é 8 de março, Dia da Mulher.</p>
+            <p>Não estou aí com você para poder te dar as 500 mimosas que você merece, por enquanto contente-se com mimosas virtuais 🌼</p>
+            <button class="btn" onclick="nextStep(2, 3)">Continuar</button>
+        </div>
+
+        <div id="step-3" class="step">
+            <img src="https://images.unsplash.com/photo-1614863744654-e75b7b963167?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mimosa" class="mimosa-img">
+            <p>Uma mimosa para a garota mais <b>bonita</b> do mundo</p>
+            <button class="btn" onclick="nextStep(3, 4)">Avançar</button>
+        </div>
+
+        <div id="step-4" class="step">
+            <img src="https://images.unsplash.com/photo-1582650080644-88f58b857771?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mimosa" class="mimosa-img">
+            <p>Ok, uma segunda porque uma só não bastava de tão <b>linda</b> que você é</p>
+            <button class="btn" onclick="nextStep(4, 5)">Avançar</button>
+        </div>
+
+        <div id="step-5" class="step">
+            <img src="https://images.unsplash.com/photo-1551893665-f843f600794e?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mimosa" class="mimosa-img">
+            <p>Uma para a mais <b>inteligente e radiante</b>, minha gênia do coração</p>
+            <button class="btn" onclick="nextStep(5, 6)">Avançar</button>
+        </div>
+
+        <div id="step-6" class="step">
+            <img src="https://images.unsplash.com/photo-1646736853244-a0c910b8527a?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mimosa" class="mimosa-img">
+            <p>Uma para a mais <b>simpática</b>, com você é impossível ficar de mau humor</p>
+            <button class="btn" onclick="nextStep(6, 7)">Avançar</button>
+        </div>
+
+        <div id="step-7" class="step">
+            <img src="https://images.unsplash.com/photo-1522008342704-6b265b543c46?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mimosa" class="mimosa-img">
+            <p>Uma para a mais <b>gentil</b>, você faz muitíssimo por mim</p>
+            <button class="btn" onclick="nextStep(7, 8)">Avançar</button>
+        </div>
+
+        <div id="step-8" class="step">
+            <img src="https://images.unsplash.com/photo-1490750967868-88aa4486c946?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Mimosa" class="mimosa-img">
+            <p>Uma última para a mulher que eu amo e agradeço todos os dias por poder amar ❤️</p>
+            <div class="signature">Bbatata &lt;3</div>
+        </div>
+
+    </div>
+
+    <script>
+        // --- Logica dei Passaggi ---
+        function hideYesButton() {
+            const btnSim = document.getElementById('btn-sim');
+            btnSim.style.opacity = '0'; // Svanisce
+            setTimeout(() => {
+                btnSim.style.display = 'none'; // Scompare del tutto
+            }, 300);
+        }
+
+        function nextStep(current, next) {
+            document.getElementById('step-' + current).classList.remove('active');
+            document.getElementById('step-' + next).classList.add('active');
+        }
+
+        // --- Logica Animazione Mimose (Background) ---
+        function createMimosaFlake() {
+            const container = document.getElementById('mimosa-container');
+            const flake = document.createElement('div');
+            flake.className = 'mimosa-flake';
+
+            // Randomizza la dimensione (piccoli petali)
+            const size = Math.random() * 6 + 4 + 'px';
+            flake.style.width = size;
+            flake.style.height = size;
+
+            // Randomizza la posizione orizzontale di partenza
+            flake.style.left = Math.random() * 100 + 'vw';
+
+            // Randomizza la durata dell'animazione (velocità di caduta)
+            const duration = Math.random() * 3 + 2 + 's';
+            flake.style.animationDuration = duration;
+
+            // Randomizza un leggero ritardo d'inizio
+            flake.style.animationDelay = Math.random() * 2 + 's';
+
+            // Randomizza l'opacità iniziale
+            flake.style.opacity = Math.random() * 0.5 + 0.3;
+
+            container.appendChild(flake);
+
+            // Rimuove l'elemento dopo che ha finito di cadere per non appesantire la pagina
+            setTimeout(() => {
+                flake.remove();
+            }, (parseFloat(duration) + parseFloat(flake.style.animationDelay)) * 1000);
+        }
+
+        // Crea un nuovo petalo ogni 150 millisecondi
+        setInterval(createMimosaFlake, 150);
+
+        // Crea i primi petali subito
+        for(let i=0; i<20; i++) {
+            setTimeout(createMimosaFlake, i * 100);
+        }
+    </script>
+
+</body>
+</html>
